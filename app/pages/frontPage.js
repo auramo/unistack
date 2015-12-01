@@ -11,7 +11,9 @@ export const renderPage = applicationState =>
     </body>
 
 export const initialState = {
-    clicks: 0
+    clicks: 0,
+    evilness: "<script>alert('howdy ho!');</script>",
+    evilness2: "<script>alert('lol!');</script>"
 }
 
 export const pagePath = '/'
