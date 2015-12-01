@@ -8,6 +8,8 @@ import sass from 'node-sass'
 import compression from 'compression'
 import crypto from 'crypto'
 import Promise from 'bluebird'
+import escape from 'recursive-escape'
+
 const fs = Promise.promisifyAll(require('fs'))
 
 const server = express()
@@ -25,7 +27,7 @@ server.get('*', (req, res, next) => {
             .then(([cssChecksum, bundleJsChecksum]) => {
                 res.send(ReactDOMServer.renderToString(basePage(
                     page,
-                    page.initialState,
+                    escape(page.initialState),
                     { cssChecksum, bundleJsChecksum}
                 )))
             })
